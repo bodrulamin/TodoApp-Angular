@@ -42,8 +42,7 @@ export class TodoService {
   }
  
   edit(todo: Todo) {
-    console.log(todo.id);
-    console.log(this.todoApi + todo.id);
+  
 
     return this.http.put(this.updteApi(todo.id.toString()), JSON.stringify(todo), { headers: { 'content-Type': 'application/json' } })
   }

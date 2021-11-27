@@ -1,6 +1,6 @@
 export class Todo{
-    id : number = 0
-    title : string = ''
+    id : any
+     title : string = ''
     description: string = ''
 
 

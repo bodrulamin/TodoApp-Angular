@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo } from '../models/todo';
+import { FirebaseAuthService } from '../services/firebase-auth.service';
 import { TodoService } from '../services/todo.service';
 
 @Component({
@@ -14,12 +15,10 @@ export class TodoComponent implements OnInit {
   updating: boolean = false;
 
   todo: Todo = new Todo()
-  todos:Todo[] = []
-  constructor(private tservice: TodoService) {
+  todos: Todo[] = []
 
-
-
-  }
+  //constructor(private tservice: TodoService) {}
+ constructor(private tservice: FirebaseAuthService) {}
 
   ngOnInit(): void {
     this.updateTodos()
@@ -71,18 +70,32 @@ export class TodoComponent implements OnInit {
   }
 
   updateTodos() {
-     this.tservice.getTodos().subscribe(
-       d=>{
-         this.todos = []
-      let m =  <Map<any, any>>d
-      for (const [key, value] of Object.entries(m)) { 
-        console.log(key, value);
-        this.todos.push(value)
-    }
+    this.tservice.getTodos().subscribe(
+      d => {
 
-  
-       }
-       
+        if (this.tservice instanceof TodoService) {
+          this.todos = []
+          let m = <Map<any, any>>d
+          for (const [key, value] of Object.entries(m)) {
+            console.log(key, value);
+            this.todos.push(value)
+          }
+        }
+
+        if (this.tservice instanceof FirebaseAuthService) {
+          this.todos = []
+          let m = <Map<any, any>>d
+          for (const [key, value] of Object.entries(m)) {
+            console.log(key, value);
+            value.id = key
+            this.todos.push(value)
+          }
+        }
+
+
+
+      }
+
     )
   }
 }
