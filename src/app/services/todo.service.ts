@@ -29,7 +29,7 @@ export class TodoService {
 
  // fdb = "https://bodrul-amin-default-rtdb.asia-southeast1.firebasedatabase.app/todos/"
   //todoApi = "https://bodrul-amin-default-rtdb.asia-southeast1.firebasedatabase.app/todos.json"
-  todoApi = "http://localhost:8080/todos/"
+  todoApi = "http://localhost:3000/todos/"
   constructor(private http: HttpClient) {
 
   }
