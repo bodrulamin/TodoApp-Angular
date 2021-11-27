@@ -1,0 +1,44 @@
+<div class="row m-2 p-2 bg-secondary rounded">
+    <div class="">
+        <div class="float-start text-white h1">Todo</div>
+        <div [ngClass]="toggleAddClose? 'btn btn-danger': 'btn btn-primary'" class="float-end btn "
+            (click)="!toggleAddClose? btnAdd() : btnClose()">{{toggleAddClose? 'close' : 'Add'}}</div>
+    </div>
+</div>
+
+<div *ngIf="toggleAddClose" class="p-4 card m-2 bg-light bg-gradient">
+    <div class="label">Title</div>
+    <input [(ngModel)]="todo.title" class="form-control" type="text" name="" id="">
+    <div class="label">Todo description</div>
+    <input [(ngModel)]="todo.description" class="form-control" type="text" name="" id="">
+    <div class="float-end">
+        <button (click)='!updating?saveTodo():editTodo()' class="mt-2 float-end btn btn-primary">{{!updating ? 'Save':
+            'Update'}}</button>
+    </div>
+
+</div>
+<div *ngFor="let td of todos" class="row m-2">
+    <div class="card p-3">
+        <div class="row">
+
+
+            <div class="col">
+                <div class="h2">{{td.title}}</div>
+
+            </div>
+
+            <div class="col">
+                <div class="d-flex justify-content-end">
+                    <button (click)="edit(td)" class="col-auto me-2 ms-2 btn btn-outline-info">Edit</button>
+                <button (click)="delete(td)" class="col-auto btn btn-outline-danger">delete</button> 
+                </div>
+               
+            </div>
+            <div class="">
+                <div class="font-monospace">{{td.description}}</div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
