@@ -1,7 +1,7 @@
-<div class="row m-2 p-2 bg-secondary rounded">
+<div class="row m-2 p-2 bg-success bg-gradient rounded">
     <div class="">
         <div class="float-start text-white h1">Todo</div>
-        <div [ngClass]="toggleAddClose? 'btn btn-danger': 'btn btn-primary'" class="float-end btn "
+        <div [ngClass]="toggleAddClose? 'btn btn-danger': 'btn btn-warning'" class="float-end btn "
             (click)="!toggleAddClose? btnAdd() : btnClose()">{{toggleAddClose? 'close' : 'Add'}}</div>
     </div>
 </div>
@@ -23,7 +23,7 @@
 
 
             <div class="col">
-                <div class="h2">{{td.title}}</div>
+                <div class="h4">{{td.title}}</div>
 
             </div>
 
